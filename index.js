@@ -43,6 +43,17 @@ btnAdd.addEventListener('click', (e) => {
           btnAdd.addEventListener('click', () => {
             event.prompt();
              btnAdd.style.display = 'none';
+            
+            event.userChoice
+               .then((choiceResult) => {
+                 if (choiceResult.outcome === 'accepted') {
+                   console.log('User accepted the A2HS prompt');
+                     } else {
+                              console.log('User dismissed the A2HS prompt');
+                            }
+                   event = null;
+                  });
+            
           });
     
         });
