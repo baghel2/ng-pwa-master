@@ -7,6 +7,7 @@ if('serviceWorker' in navigator) {
     .catch(function(error) {console.log('Service worker registration failed, error:', error);  });
 }
 
+/*
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
@@ -32,3 +33,16 @@ btnAdd.addEventListener('click', (e) => {
       deferredPrompt = null;
     });
 });
+*/
+
+  window.addEventListener('beforeinstallprompt', event => {
+          event.preventDefault();
+    
+          btnAdd.style.display = 'block';
+    
+          btnAdd.addEventListener('click', () => {
+            event.prompt();
+             btnAdd.style.display = 'none';
+          });
+    
+        });
