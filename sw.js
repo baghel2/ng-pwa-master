@@ -1,4 +1,4 @@
-var VERSION = '3';
+var VERSION = '3.1.1';
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(VERSION).then(function(cache) {
@@ -24,15 +24,6 @@ self.addEventListener('fetch', function(event) {
       return response || fetch(event.request);
     })
   );
-});
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  // Prevent Chrome 67 and earlier from automatically showing the prompt
-  e.preventDefault();
-  // Stash the event so it can be triggered later.
-  deferredPrompt = e;
-  // Update UI notify the user they can add to home screen
-  btnAdd.style.display = 'block';
 });
 
 /*
