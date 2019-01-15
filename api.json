@@ -1,4 +1,4 @@
-"user":{
+{"user":[{
 "id":1,
 "name":"arvind singh",
 "age":30,
@@ -11,4 +11,5 @@
 "age":30,
 "username":12,
 "password:12
+}]
 }
