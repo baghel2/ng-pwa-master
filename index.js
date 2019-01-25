@@ -37,7 +37,7 @@ btnAdd.addEventListener('click', (e) => {
 
   window.addEventListener('beforeinstallprompt', event => {
           event.preventDefault();
-    
+    var btnAdd =document.getElementById('btnAdd');
           btnAdd.style.display = 'block';
     
           btnAdd.addEventListener('click', () => {
