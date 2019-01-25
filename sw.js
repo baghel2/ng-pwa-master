@@ -1,4 +1,4 @@
-var VERSION = '3.1.1';
+var VERSION = '3.1.2';
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(VERSION).then(function(cache) {
@@ -10,7 +10,8 @@ self.addEventListener('install', function(event) {
       './css/style.css',
      './Icon.png',
      './fox-icon.png',
-     './icon-512.png'
+     './icon-512.png',
+      './icon-192.png'
         ]
       );
     })
@@ -36,37 +37,32 @@ self.addEventListener('fetch', function(event) {
     })
   );
 });
-/////////////
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    caches.open(VERSION).then(function(cache) {
-      return cache.match(event.request).then(function (response) {
-        return response || fetch(event.request).then(function(response) {
-          cache.put(event.request, response.clone());
-          return response;
-        });
-      });
-    })
-  );
+
+*/
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent Chrome 67 and earlier from automatically showing the prompt
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+  // Update UI notify the user they can add to home screen
+  btnAdd.style.display = 'block';
 });
 
-////////////
-function fetch(url) {
-  return fetch(url)
-    .then(function(response) {
-    // Check if we received a valid response
-    if (!response.ok) {
-      throw Error(response.statusText);
-    }
-    return caches.open(VERSION)
-      .then(function(cache) {
-      cache.put(url, response.clone());
-      return response;
+btnAdd.addEventListener('click', (e) => {
+  // hide our user interface that shows our A2HS button
+  btnAdd.style.display = 'none';
+  // Show the prompt
+  deferredPrompt.prompt();
+  // Wait for the user to respond to the prompt
+  deferredPrompt.userChoice
+    .then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the A2HS prompt');
+      } else {
+        console.log('User dismissed the A2HS prompt');
+      }
+      deferredPrompt = null;
     });
-  })
-    .catch(function(error) {
-    console.log('Request failed:', error);
-    // You could return a custom offline 404 page here
-  });
-}
-*/
+});
