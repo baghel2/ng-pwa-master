@@ -10,8 +10,7 @@ self.addEventListener('install', function(event) {
       './css/style.css',
      './Icon.png',
      './fox-icon.png',
-     './icon-512.png',
-      './fox-icon.png'
+     './icon-512.png'
         ]
       );
     })
