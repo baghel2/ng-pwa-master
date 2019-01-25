@@ -1,7 +1,7 @@
 {
-"name": "Arvind's profile",
-"short_name": "Arvind",
-  "background_color": "#0fabbf",
+"name": "Test Arvind's profile",
+"short_name": "Arvind Test",
+  "background_color": "#ffff00",
   "description": "Shows Arvind's profile",
   "display": "fullscreen",
   "icons": [
@@ -21,6 +21,6 @@
     "type": "image/png"
     }
   ],
-  "theme_color": "#0fabbf",
+  "theme_color": "#ff0040",
   "start_url": "./index.html"
 }
